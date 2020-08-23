@@ -1,16 +1,22 @@
 import 'package:angular/angular.dart';
+import 'package:angular_router/angular_router.dart';
 
-import 'src/todo_list/todo_list_component.dart';
-
-// AngularDart info: https://angulardart.dev
-// Components info: https://angulardart.dev/components
+import 'src/routes.dart';
 
 @Component(
   selector: 'my-app',
-  styleUrls: ['app_component.css'],
-  templateUrl: 'app_component.html',
-  directives: [TodoListComponent],
+  template: '''
+    <h1>Angular Router</h1>
+    <nav>
+      <a [routerLink]="RoutePaths.crises.toUrl()"
+         [routerLinkActive]="'active-route'">Crisis Center</a>
+      <a [routerLink]="RoutePaths.heroes.toUrl()"
+         [routerLinkActive]="'active-route'">Heroes</a>
+    </nav>
+    <router-outlet [routes]="Routes.all"></router-outlet>
+  ''',
+  styles: ['.active-route {color: #039be5}'],
+  directives: [routerDirectives],
+  exports: [RoutePaths, Routes],
 )
-class AppComponent {
-  // Nothing here yet. All logic is in TodoListComponent.
-}
+class AppComponent {}
