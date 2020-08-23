@@ -1,7 +1,8 @@
 import 'package:angular_router/angular_router.dart';
 
 import 'crisis_list_component.template.dart' as crisis_list_template;
-import 'hero_list_component.template.dart' as hero_list_template;
+import 'hero/hero_component.template.dart' as hero_template;
+import 'hero/hero_list_component.template.dart' as hero_list_template;
 import 'not_found_component.template.dart' as not_found_template;
 import 'route_paths.dart';
 
@@ -18,9 +19,15 @@ class Routes {
     component: hero_list_template.HeroListComponentNgFactory,
   );
 
+  static final hero = RouteDefinition(
+    routePath: RoutePaths.hero,
+    component: hero_template.HeroComponentNgFactory,
+  );
+
   static final all = <RouteDefinition>[
     crises,
     heroes,
+    hero,
     RouteDefinition.redirect(
       path: '',
       redirectTo: RoutePaths.heroes.toUrl(),
